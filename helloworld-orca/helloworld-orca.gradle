@@ -1,0 +1,4 @@
+dependencies {
+  implementation "com.netflix.spinnaker.kork:kork-plugins-api:$korkVersion"
+  implementation "com.netflix.spinnaker.orca:orca-api:$orcaVersion"
+}
