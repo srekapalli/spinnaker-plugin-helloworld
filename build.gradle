@@ -13,16 +13,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 subprojects {
   repositories {
     jcenter()
     maven { url "http://dl.bintray.com/spinnaker/spinnaker/" }
   }
 
-  apply plugin: "java-library"
+  apply plugin: "java"
+  apply plugin: "maven-publish"
 
   sourceCompatibility = 1.8
   targetCompatibility = 1.8
 
   group = "com.robzienert.spinnaker.plugin.helloworld"
+
+  // TODO(rz): Blech.
+  dependencies {
+    annotationProcessor "org.pf4j:pf4j:3.1.0"
+  }
+
+  publishing {
+    repositories {
+      maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/robzienert/spinnaker-plugin-helloworld")
+        credentials {
+          username = project.findProperty("gpr.user") ?: System.getenv("GPR_USER")
+          password = project.findProperty("gpr.key") ?: System.getenv("GPR_API_KEY")
+        }
+      }
+    }
+    publications {
+      gpr(MavenPublication) { publication ->
+        from(components.java)
+      }
+//      gpr(MavenPublication) { publication ->
+//        project.shadow.component(publication)
+//      }
+    }
+  }
 }

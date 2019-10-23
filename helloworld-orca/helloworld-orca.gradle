@@ -1,4 +1,17 @@
 dependencies {
+  // TODO(rz): Dependencies are wrong. We shouldn't need to import kork-plugins-api
   implementation "com.netflix.spinnaker.kork:kork-plugins-api:$korkVersion"
   implementation "com.netflix.spinnaker.orca:orca-api:$orcaVersion"
+
+  // TODO(rz): orca-api is using guava as an api, but defined as an implementation dep
+  implementation("com.google.guava:guava:28.1-jre")
+}
+
+jar {
+  manifest {
+    attributes "Plugin-Class": "com.robzienert.spinnaker.plugin.helloworld.HelloWorldStage",
+      "Plugin-Id": "helloworld",
+      "Plugin-Version": version,
+      "Plugin-Provider": "Rob Zienert"
+  }
 }
