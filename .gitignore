@@ -1,0 +1,15 @@
+/.gradle/
+build
+.DS_Store
+*.iml
+*.ipr
+*.iws
+out
+
+classes
+
+**/metatron/decrypted/*
+
+/.idea/
+!/.idea/runConfigurations/**
+!/.idea/google-java-format.xml
