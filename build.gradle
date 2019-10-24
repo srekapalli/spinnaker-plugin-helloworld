@@ -25,6 +25,10 @@ buildscript {
   }
 }
 
+apply plugin: "com.palantir.git-version"
+
+version = normalizedVersion()
+
 subprojects {
   repositories {
     jcenter()
@@ -33,13 +37,12 @@ subprojects {
 
   apply plugin: "java"
   apply plugin: "maven-publish"
-  apply plugin: "com.palantir.git-version"
 
   sourceCompatibility = 1.8
   targetCompatibility = 1.8
 
   group = "com.robzienert.spinnaker.plugin.helloworld"
-  version = gitVersion()
+  version = rootProject.version
 
   // TODO(rz): Blech.
   dependencies {
@@ -65,5 +68,15 @@ subprojects {
         from(components.java)
       }
     }
+  }
+}
+
+String normalizedVersion() {
+  String fullVersion = gitVersion()
+  String normalized = fullVersion.split("-").first()
+  if (fullVersion.contains("dirty")) {
+    return "$normalized-SNAPSHOT"
+  } else {
+    return normalized
   }
 }
