@@ -38,19 +38,19 @@ subprojects {
       maven {
         name = "GitHubPackages"
         url = uri("https://maven.pkg.github.com/robzienert/spinnaker-plugin-helloworld")
-        credentials {
-          username = project.findProperty("gpr.user") ?: System.getenv("GPR_USER")
-          password = project.findProperty("gpr.key") ?: System.getenv("GPR_API_KEY")
+        credentials(HttpHeaderCredentials) {
+          name = "Authorization"
+          value = "Bearer ${System.getenv("GITHUB_TOKEN")}"
+        }
+        authentication {
+          header(HttpHeaderAuthentication)
         }
       }
     }
     publications {
-      gpr(MavenPublication) { publication ->
+      gpr(MavenPublication) {
         from(components.java)
       }
-//      gpr(MavenPublication) { publication ->
-//        project.shadow.component(publication)
-//      }
     }
   }
 }
