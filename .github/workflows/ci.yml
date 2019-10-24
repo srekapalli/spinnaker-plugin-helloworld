@@ -2,7 +2,8 @@ name: CI
 
 on:
   push:
-    tags-ignore: [*]
+    branches:
+      - master
 
 jobs:
   build:
