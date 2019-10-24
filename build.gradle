@@ -14,6 +14,17 @@
  * limitations under the License.
  */
 
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "com.palantir.gradle.gitversion:gradle-git-version:0.12.2"
+  }
+}
+
 subprojects {
   repositories {
     jcenter()
@@ -22,11 +33,13 @@ subprojects {
 
   apply plugin: "java"
   apply plugin: "maven-publish"
+  apply plugin: "com.palantir.git-version"
 
   sourceCompatibility = 1.8
   targetCompatibility = 1.8
 
   group = "com.robzienert.spinnaker.plugin.helloworld"
+  version = gitVersion()
 
   // TODO(rz): Blech.
   dependencies {
