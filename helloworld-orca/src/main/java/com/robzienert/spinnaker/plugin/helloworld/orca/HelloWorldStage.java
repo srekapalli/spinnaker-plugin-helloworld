@@ -18,17 +18,27 @@ package com.robzienert.spinnaker.plugin.helloworld.orca;
 import com.netflix.spinnaker.orca.api.SimpleStage;
 import com.netflix.spinnaker.orca.api.SimpleStageInput;
 import com.netflix.spinnaker.orca.api.SimpleStageOutput;
+import com.netflix.spinnaker.orca.api.SimpleStageStatus;
 import org.pf4j.Extension;
+
+import java.util.Collections;
+import java.util.Optional;
+
+import static java.lang.String.format;
 
 /**
  * It says hello.
  */
 @Extension
-public class HelloWorldStage implements SimpleStage {
+public class HelloWorldStage implements SimpleStage<HelloWorldStage.Input> {
   @Override public SimpleStageOutput execute(
-    SimpleStageInput simpleStageInput) {
+    SimpleStageInput<Input> simpleStageInput) {
     Output output = new Output();
-    output.setOutput("hello world!");
+    output.setOutput(new HelloWorldMessage(
+      format("Hello, %s!", Optional.ofNullable(simpleStageInput.getValue().recipient).orElse("world"))
+    ));
+    output.setContext(Collections.emptyMap());
+    output.setStatus(SimpleStageStatus.SUCCEEDED);
     return output;
   }
 
@@ -36,6 +46,18 @@ public class HelloWorldStage implements SimpleStage {
     return "helloWorld";
   }
 
-  public static class Output extends SimpleStageOutput<String, Object> {
+  public static class Input {
+    public String recipient = "world";
+  }
+
+  public static class Output extends SimpleStageOutput<HelloWorldMessage, Object> {
+  }
+
+  public static class HelloWorldMessage {
+    public String message;
+
+    public HelloWorldMessage(String message) {
+      this.message = message;
+    }
   }
 }
