@@ -1,0 +1,17 @@
+apply plugin: 'com.moowork.node'
+
+node {
+  download = true
+}
+
+task clean {
+  doFirst {
+    project.delete(files(buildDir))
+    project.delete(files("$projectDir/dist"))
+    project.delete(files("$projectDir/node_modules"))
+  }
+}
+tasks.clean.dependsOn("yarn_cache_clean")
+
+task build
+tasks.build.dependsOn("yarn", "yarn_build")

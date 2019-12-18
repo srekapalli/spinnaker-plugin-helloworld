@@ -8,8 +8,9 @@ out
 
 classes
 
-**/metatron/decrypted/*
-
 /.idea/
 !/.idea/runConfigurations/**
 !/.idea/google-java-format.xml
+
+node_modules
+dist

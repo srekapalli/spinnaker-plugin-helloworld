@@ -1,6 +1,6 @@
 rootProject.name="plugin-helloworld"
 
-include "helloworld-orca"
+include "helloworld-deck", "helloworld-orca"
 
 def setBuildFile(project) {
   project.buildFileName = "${project.name}.gradle"
