@@ -5,7 +5,7 @@ dependencies {
 
 jar {
   manifest {
-    attributes "Plugin-Class": "com.robzienert.spinnaker.plugin.helloworld.HelloWorldPlugin",
+    attributes "Plugin-Class": "com.robzienert.spinnaker.plugin.helloworld.orca.HelloWorldPlugin",
       "Plugin-Id": "robzienert.orca-helloworld",
       "Plugin-Version": version,
       "Plugin-Provider": "robzienert",
