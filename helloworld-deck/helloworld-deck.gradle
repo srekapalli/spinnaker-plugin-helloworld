@@ -13,5 +13,6 @@ task clean {
 }
 tasks.clean.dependsOn("yarn_cache_clean")
 
-task build
-tasks.build.dependsOn("yarn", "yarn_build")
+// TODO(rz): Builds for deck don't work yet
+//task build
+//tasks.build.dependsOn("yarn", "yarn_build")
