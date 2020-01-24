@@ -1,18 +1,5 @@
-apply plugin: 'com.moowork.node'
+apply plugin: "io.spinnaker.plugin.ui-extension"
 
 node {
   download = true
 }
-
-task clean {
-  doFirst {
-    project.delete(files(buildDir))
-    project.delete(files("$projectDir/dist"))
-    project.delete(files("$projectDir/node_modules"))
-  }
-}
-tasks.clean.dependsOn("yarn_cache_clean")
-
-// TODO(rz): Builds for deck don't work yet
-//task build
-//tasks.build.dependsOn("yarn", "yarn_build")

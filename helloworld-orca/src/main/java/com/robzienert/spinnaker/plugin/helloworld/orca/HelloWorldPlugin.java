@@ -50,7 +50,7 @@ public class HelloWorldPlugin extends Plugin {
    * It says hello.
    */
   @Extension
-  @SpinnakerExtension(id = "robzienert.helloworld")
+  @SpinnakerExtension(id = "com.robzienert.helloworld-stage")
   public static class HelloWorldStage implements
     SimpleStage<HelloWorldStage.Input>,
     ConfigurableExtension<HelloWorldStageConfigProperties> {

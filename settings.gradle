@@ -1,3 +1,11 @@
+pluginManagement {
+  repositories {
+    mavenLocal()
+    maven { url "https://dl.bintray.com/spinnaker/gradle/" }
+    gradlePluginPortal()
+  }
+}
+
 rootProject.name="plugin-helloworld"
 
 include "helloworld-deck", "helloworld-orca"

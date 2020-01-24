@@ -6,7 +6,7 @@ import externalGlobals from 'rollup-plugin-external-globals';
 
 export default [
   {
-    input: 'src/main.ts',
+    input: 'src/index.ts',
     plugins: [
       nodeResolve(),
       commonjs(),
@@ -16,7 +16,7 @@ export default [
       // import from .css, .less, and inject into the document <head></head>
       postCss(),
     ],
-    output: [{ dir: 'dist', format: 'es', }]
+    output: [{ dir: 'build/dist', format: 'es', }]
   }
 ];
 

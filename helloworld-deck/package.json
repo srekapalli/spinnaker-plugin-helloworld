@@ -1,7 +1,7 @@
 {
   "name": "rollup-starter-lib",
   "version": "1.0.0",
-  "module": "dist/main.js",
+  "module": "build/dist/index.js",
   "dependencies": {
     "@spinnaker/core": "0.0.432",
     "react": "^16.12.0",
@@ -26,6 +26,6 @@
     "pretest": "npm run build"
   },
   "files": [
-    "dist"
+    "build/dist"
   ]
 }

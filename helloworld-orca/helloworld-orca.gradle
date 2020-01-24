@@ -1,14 +1,22 @@
-dependencies {
-  implementation "com.netflix.spinnaker.kork:kork-plugins-api:$korkVersion"
-  implementation "com.netflix.spinnaker.orca:orca-api:$orcaVersion"
+apply plugin: "io.spinnaker.plugin.service-extension"
+apply plugin: "maven-publish"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+  jcenter()
+  maven { url "http://dl.bintray.com/spinnaker/spinnaker/" }
 }
 
-jar {
-  manifest {
-    attributes "Plugin-Class": "com.robzienert.spinnaker.plugin.helloworld.orca.HelloWorldPlugin",
-      "Plugin-Id": "robzienert.orca-helloworld",
-      "Plugin-Version": version,
-      "Plugin-Provider": "robzienert",
-      "Plugin-Requires": "orca>=7.0.0"
-  }
+dependencies {
+  annotationProcessor("org.pf4j:pf4j:3.2.0")
+
+  compileOnly("com.netflix.spinnaker.kork:kork-plugins-api:$korkVersion")
+  compileOnly("com.netflix.spinnaker.orca:orca-api:$orcaVersion")
+}
+
+spinnakerPlugin {
+  serviceName = "orca"
+  pluginClass = "com.robzienert.spinnaker.plugin.helloworld.orca.HelloWorldPlugin"
 }
