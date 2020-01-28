@@ -15,6 +15,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Release Bundle
+        uses: borales/actions-yarn@v2.0.0
         run: ./gradlew releaseBundle
       - name: Create Release
         id: create_release
