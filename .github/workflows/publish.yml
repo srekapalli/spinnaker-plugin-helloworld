@@ -14,7 +14,33 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Publish
-        run: ./gradlew publish
+      - name: Release Bundle
+        run: ./gradlew releaseBundle
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.0.0
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          tag_name: "${{ github.ref }}"
+          release_name: helloworld ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload binary
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          upload_url: "${{ steps.createRelease.outputs.upload_url }}"
+          asset_path: ./build/distributions/plugin-helloworld-${{ github.ref }}.zip
+          asset_name: plugin-helloworld-${{ github.ref }}.zip
+          asset_content_type: application/zip
+      - name: Upload plugin info
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          upload_url: "${{ steps.createRelease.outputs.upload_url }}"
+          asset_path: ./build/distributions/plugin-info.json
+          asset_name: plugin-info.json
+          asset_content_type: application/json
