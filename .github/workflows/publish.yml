@@ -39,7 +39,7 @@ jobs:
         with:
           upload_url: "${{ steps.create_release.outputs.upload_url }}"
           asset_path: ./build/distributions/plugin-helloworld-${{ steps.get_version.outputs.VERSION }}.zip
-          asset_name: plugin-helloworld-${{ github.ref }}.zip
+          asset_name: plugin-helloworld-${{ steps.get_version.outputs.VERSION }}.zip
           asset_content_type: application/zip
       - name: Upload plugin info
         uses: actions/upload-release-asset@v1.0.1
