@@ -57,7 +57,6 @@ public class HelloWorldPlugin extends Plugin {
 
     private HelloWorldStageConfigProperties properties;
 
-    
     @Override public SimpleStageOutput execute(
       SimpleStageInput<Object> simpleStageInput) {
       HelloWorldStage.Output output = new HelloWorldStage.Output();
