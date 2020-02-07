@@ -30,9 +30,9 @@ plugins {
 apply plugin: "io.spinnaker.plugin.bundler"
 
 spinnakerBundle {
-  pluginId = "com.robzienert.helloworld"
+  pluginId = "com.srekapalli.helloworld"
   description = "An example of a plugin, it doesn't really do anything."
-  provider = "https://github.com/robzienert"
+  provider = "https://github.com/srekapalli"
   version = rootProject.version
 }
 

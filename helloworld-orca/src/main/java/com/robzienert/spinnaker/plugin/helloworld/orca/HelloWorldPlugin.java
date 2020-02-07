@@ -52,18 +52,18 @@ public class HelloWorldPlugin extends Plugin {
   @Extension
   @SpinnakerExtension(id = "com.robzienert.helloworld")
   public static class HelloWorldStage implements
-    SimpleStage<HelloWorldStage.Input>,
+    SimpleStage<Object>,
     ConfigurableExtension<HelloWorldStageConfigProperties> {
 
     private HelloWorldStageConfigProperties properties;
 
     @Override public SimpleStageOutput execute(
-      SimpleStageInput<HelloWorldStage.Input> simpleStageInput) {
+      SimpleStageInput<Object> simpleStageInput) {
       HelloWorldStage.Output output = new HelloWorldStage.Output();
       output.setOutput(new HelloWorldStage.HelloWorldMessage(
         format("%s, %s!",
           properties.greetings.get(new Random().nextInt(properties.greetings.size())),
-          Optional.ofNullable(simpleStageInput.getValue().recipient).orElse(properties.defaultRecipient)
+          Optional.ofNullable(simpleStageInput.getValue().toString()).orElse(properties.defaultRecipient)
         )
       ));
       output.setContext(Collections.emptyMap());
